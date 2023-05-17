@@ -93,6 +93,22 @@ plot(cumsum(propve),
      ylab = "Cumulative Proportion of Variance Explained",
      ylim = c(0, 1), type = "b")
      
+# Kmeans using the Python
 
+from sklearn.cluster import KMeans
+
+data = psv.readcsv('data.csv')
+inertias = []
+
+for i in range(1,11):
+    kmeans = KMeans(n_clusters=i)
+    kmeans.fit(data)
+    inertias.append(kmeans.inertia_)
+
+plt.plot(range(1,11), inertias, marker='o')
+plt.title('Elbow method')
+plt.xlabel('Number of clusters')
+plt.ylabel('Inertia')
+plt.show()
 
 
